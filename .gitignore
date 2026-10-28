@@ -1,0 +1,14 @@
+__pycache__/
+.venv/
+
+dataset/*
+!dataset/train/
+!dataset/val/
+dataset/cifar-10-batches-py/
+model_save/
+logs/
+
+.idea/
+.vscode/
+.DS_Store
+
