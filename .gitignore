@@ -4,7 +4,6 @@ __pycache__/
 dataset/*
 !dataset/train/
 !dataset/val/
-dataset/cifar-10-batches-py/
 model_save/
 logs/
 
