@@ -8,6 +8,7 @@ from torchvision.utils import make_grid
 
 writer = SummaryWriter("logs/01")
 
+
 class MyData(Dataset):
 
     def __init__(self, root_dir, image_dir, label_file, transform):
@@ -39,6 +40,7 @@ class MyData(Dataset):
     def __len__(self):
         return len(self.image_list)
 
+
 if __name__ == '__main__':
     transform = transforms.Compose([transforms.Resize((256, 256)), transforms.ToTensor()])
     root_dir = "dataset/train"
@@ -48,24 +50,25 @@ if __name__ == '__main__':
     train_dataset = ants_dataset + bees_dataset
 
     # 打印第一个样本的图片形状
-    print(train_dataset[0]['img'].shape) # torch.Size([3, 256, 256])，对应3个通道的张量
+    print(train_dataset[0]['img'].shape)  # torch.Size([3, 256, 256])，对应3个通道的张量
 
     # 创建 DataLoader（num_workers加载线程数）
     dataloader = DataLoader(train_dataset, batch_size=4, num_workers=2)
 
     # 添加一个样本图片到 TensorBoard
     writer.add_image('sample', train_dataset[0]['img'])
-    
+
     for i, j in enumerate(dataloader):
-        print(type(j)) # <class 'dict'>，字典由 __getitem__ 方法的返回值决定
-        print(i, j['img'].shape) # torch.Size([batch_size, 3, 256, 256])，即每次对dataloader的遍历取得的是一批batch_size的样本
+        print(type(j))  # <class 'dict'>，字典由 __getitem__ 方法的返回值决定
+        # torch.Size([batch_size, 3, 256, 256])，即每次对dataloader的遍历取得的是一批batch_size的样本
+        print(i, j['img'].shape)
         writer.add_image("train_data_batch", make_grid(j['img']), i)
-    
+
     writer.close()
 
 
 ''' 
-要点：
+一个 PyTorch 自定义数据集，要点：
 1. 自定义数据集，继承 Dataset 类，并实现 __init__、__getitem__ 和 __len__ 等方法
 2. PIL 读取图片
 3. transforms 进行图像变换（缩放、转换为张量、归一化 等）

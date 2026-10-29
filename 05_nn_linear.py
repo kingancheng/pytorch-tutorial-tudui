@@ -2,8 +2,6 @@ import torch
 import torchvision
 from torch import nn
 from torch.nn import ReLU, Sigmoid, Linear
-from torch.utils.data import DataLoader
-from torch.utils.tensorboard import SummaryWriter
 
 
 class MyModule(nn.Module):
@@ -22,5 +20,5 @@ module = MyModule()
 
 
 '''
-常用线性、非线性层示例
+常用线性层、非线性层示例
 '''

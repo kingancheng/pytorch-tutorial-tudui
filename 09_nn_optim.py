@@ -2,7 +2,6 @@ import torch
 import torchvision
 from torch import nn
 from torch.nn import Sequential, Conv2d, MaxPool2d, Flatten, Linear
-from torch.optim.lr_scheduler import StepLR
 from torch.utils.data import DataLoader
 
 dataset = torchvision.datasets.CIFAR10("./dataset",
